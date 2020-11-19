@@ -1,49 +1,49 @@
-import React from "react";
-import { Table } from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import {Table} from "react-bootstrap";
 import Searcherbar from "./searchbar";
 import Pagenumber from "./pagenumber";
 
 const Data = () => {
-  const players = [
-    { testid: "100", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "101", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "102", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "103", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "104", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "105", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "106", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "107", datetime: "12/11/2020 21:46", result: "negative" },
-    { testid: "107", datetime: "12/11/2020 21:46", result: "negative" },
-  ];
 
-  const renderPlayer = (player, index) => {
+    let [dataTestItems, setDataTestItems] = useState(<div/>);
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({title: 'React POST Request Example'})
+        };
+        fetch('https://localhost:8080/', requestOptions)
+            .then(response => response.json())
+            .then(data => setDataTestItems(data.map(testItem, index => {
+                    return (
+                        <tr key={index}>
+                            <td>{testItem.testId}</td>
+                            <td>{testItem.date}</td>
+                            <td>{testItem.result}</td>
+                        </tr>
+                        )
+                }))
+            )
+    }, []);
+
     return (
-      <tr key={index}>
-        <td>{player.testid}</td>
-        <td>{player.datetime}</td>
-        <td>{player.result}</td>
-      </tr>
+        <div>
+            <Searcherbar/>
+            <div className="table-wrapper">
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Test Data ID</th>
+                        <th>Test Date Time</th>
+                        <th>Result</th>
+                    </tr>
+                    </thead>
+                    <tbody>{dataTestItems}</tbody>
+                </Table>
+            </div>
+            <Pagenumber/>
+        </div>
     );
-  };
-
-  return (
-    <div>
-      <Searcherbar />
-      <div className="table-wrapper">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Test Data ID</th>
-              <th>Test Date Time</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>{players.map(renderPlayer)}</tbody>
-        </Table>
-      </div>
-      <Pagenumber />
-    </div>
-  );
 };
 
 export default Data;
