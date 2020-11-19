@@ -5,16 +5,16 @@ import Pagenumber from "./pagenumber";
 
 const Data = () => {
 
-    let [dataTestItems, setDataTestItems] = useState(<div/>);
+    let [dataTestItems, setDataTestItems] = useState(0);
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({title: 'React POST Request Example'})
+           
         };
-        fetch('https://localhost:8080/', requestOptions)
+        fetch('https:/localhost:8080/', requestOptions)
             .then(response => response.json())
-            .then(data => setDataTestItems(data.map(testItem, index => {
+            .then(data => setDataTestItems(data.map((testItem, index) => {
                     return (
                         <tr key={index}>
                             <td>{testItem.testId}</td>
