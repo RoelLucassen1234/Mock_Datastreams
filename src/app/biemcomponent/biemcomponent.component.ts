@@ -24,14 +24,14 @@ export class BiemcomponentComponent implements OnInit {
   openSnackBar() {
     //alternate between true/false
     if (this.counter === 1) {
-      this.result = 'Positive';
+      this.result = 'No valid test';
       this.counter = 2;
     } else if (this.counter === 2){
       this.result = 'Negative';
       this.counter = 3;
     } else {
-      this.result = 'No valid test';
-      this.counter = 1;
+      this.result = 'Positive';
+      this.counter = 2;
     }
 
     //get api response
