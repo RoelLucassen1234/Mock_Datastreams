@@ -15,11 +15,12 @@ const Data = () => {
         fetch('http://localhost:8081/', requestOptions)
             .then(response => response.json())
             .then(data => setDataTestItems(data.map((testItem, index) => {
+                console.log(data);
                     return (
                         <tr key={index}>
                             <td>{testItem.testId}</td>
                             <td>{testItem.date}</td>
-                            <td>{testItem.result}</td>
+                            <td>{testItem.result ? "positive" : "negative"}</td>
                         </tr>
                         )
                 }))
