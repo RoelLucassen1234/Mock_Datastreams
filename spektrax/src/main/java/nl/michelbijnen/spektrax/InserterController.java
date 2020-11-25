@@ -31,6 +31,18 @@ public class InserterController {
         return ResponseEntity.ok(testResults);
     }
 
+    @GetMapping("/last")
+    public ResponseEntity<TestResult> getLast() {
+        List<TestResult> testResults = this.repository.findAll();
+        TestResult lastTestResult = testResults.get(0);
+        for (TestResult testResult : testResults) {
+            if (testResult.getDate().after(lastTestResult.getDate())) {
+                lastTestResult = testResult;
+            }
+        }
+        return ResponseEntity.ok(lastTestResult);
+    }
+
     @PostMapping
     public ResponseEntity insert() throws URISyntaxException {
         TestResult testResult = new TestResult();
