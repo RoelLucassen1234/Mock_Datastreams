@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "covidmockcontroller"
+  "defaultProject": "covidmockcontroller",
+  "cli": {
+    "analytics": "116d957d-b978-4585-b04f-7bc36f43fc67"
+  }
 }
