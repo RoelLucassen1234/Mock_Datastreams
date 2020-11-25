@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpBackend, HttpClient} from "@angular/common/http";
+import { TestItem } from './models/test-item';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ApiserviceService {
 
   private httpClient: HttpClient;
 
-  getTestresult(data):Observable<any>{
-    return this.httpClient.post(`urltje`, data);
+  getTestresult():Observable<any>{
+    return this.httpClient.get<any>(`http://localhost:8081/last`);
   }
 }

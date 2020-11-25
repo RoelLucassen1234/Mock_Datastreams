@@ -5,6 +5,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import {ApiserviceService} from "../apiservice.service";
+import { TestItem } from '../models/test-item';
 
 @Component({
   selector: 'app-biemcomponent',
@@ -12,7 +13,7 @@ import {ApiserviceService} from "../apiservice.service";
   styleUrls: ['./biemcomponent.component.css']
 })
 export class BiemcomponentComponent implements OnInit {
-
+test : TestItem;
   constructor(private _snackBar: MatSnackBar, private apiservice: ApiserviceService) { }
 
   counter = 1;
@@ -22,6 +23,12 @@ export class BiemcomponentComponent implements OnInit {
   }
 
   openSnackBar() {
+    this.apiservice.getTestresult().subscribe(data => {
+      this.test = data;
+      console.log(this.test);
+    });
+  
+    
     //alternate between true/false
     if (this.counter === 1) {
       this.result = 'No valid test';
