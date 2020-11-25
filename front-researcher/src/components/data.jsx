@@ -9,10 +9,10 @@ const Data = () => {
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-           
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+
         };
-        fetch('https:/localhost:8080/', requestOptions)
+        fetch('http://localhost:8081/', requestOptions)
             .then(response => response.json())
             .then(data => setDataTestItems(data.map((testItem, index) => {
                     return (
