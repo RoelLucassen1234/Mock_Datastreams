@@ -13,7 +13,7 @@ import { TestItem } from '../models/test-item';
   styleUrls: ['./biemcomponent.component.css']
 })
 export class BiemcomponentComponent implements OnInit {
-test : TestItem;
+  test = new TestItem();
   constructor(private _snackBar: MatSnackBar, private apiservice: ApiserviceService) { }
 
   counter = 1;
@@ -26,21 +26,20 @@ test : TestItem;
     this.apiservice.getTestresult().subscribe(data => {
       console.log("hey");
       this.test = data;
+      this.snackbar();
       console.log(this.test);
     });
   
-    
-    //alternate between true/false
-    if (this.counter === 1) {
-      this.result = 'No valid test';
-      this.counter = 2;
-    } else if (this.counter === 2){
-      this.result = 'Negative';
-      this.counter = 3;
-    } else {
-      this.result = 'Positive';
-      this.counter = 2;
+   
+  }
+
+  snackbar(){
+    if(this.test.result.valueOf() == false){
+      this.result = 'You are allowed to go inside. Tested negative';
+    }else{
+      this.result = 'You not allowed to go inside. Tested positive';
     }
+  
 
     //get api response
     // this.apiservice.getTestresult('@@@@@@@@@@@@@@@@@').subscribe(
