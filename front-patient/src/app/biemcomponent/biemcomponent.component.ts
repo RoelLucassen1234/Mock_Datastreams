@@ -24,6 +24,7 @@ test : TestItem;
 
   openSnackBar() {
     this.apiservice.getTestresult().subscribe(data => {
+      console.log("hey");
       this.test = data;
       console.log(this.test);
     });

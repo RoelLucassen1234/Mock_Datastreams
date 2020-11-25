@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpBackend, HttpClient} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import { TestItem } from './models/test-item';
 
 @Injectable({
@@ -8,9 +8,9 @@ import { TestItem } from './models/test-item';
 })
 export class ApiserviceService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  private httpClient: HttpClient;
+  
 
   getTestresult():Observable<any>{
     return this.httpClient.get<any>(`http://localhost:8081/last`);

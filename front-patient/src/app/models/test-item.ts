@@ -1,5 +1,6 @@
 export class TestItem {
     testId: string;
-    locationDate : Date;  
+    date : Date;
+    location: string;  
     result : Boolean;  
 }
